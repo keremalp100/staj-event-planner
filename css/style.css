@@ -9,14 +9,12 @@
 body {
     font-family: "Outfit";
     background: #1f2937;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
 }
 
 .login-container {
     width: 100%;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,5 +77,54 @@ button {
 }
 
 button:hover {
+    background: #4f46e5;
+}
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    background: #ffffff;
+}
+
+
+.sidebar {
+    width: 210px;
+    height: 100vh;
+    background: #1f2937;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h2 {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.sidebar ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.sidebar ul li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    color: #ffffff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    cursor: default;
+}
+
+.sidebar ul li:last-child {
+    margin-top: 150px;
+}
+
+.sidebar ul li:hover {
     background: #4f46e5;
 }
