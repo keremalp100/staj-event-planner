@@ -61,7 +61,6 @@ body {
     font-size: 15px;
 }
 
-
 button {
     width: 100%;
     margin-top: 10px;
@@ -80,12 +79,13 @@ button:hover {
     background: #4f46e5;
 }
 
+
+
 .dashboard-container {
     display: flex;
     min-height: 100vh;
     background: #ffffff;
 }
-
 
 .sidebar {
     width: 210px;
@@ -113,18 +113,134 @@ button:hover {
     display: flex;
     align-items: center;
     gap: 15px;
-
     color: #ffffff;
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 10px;
     cursor: default;
+    font-weight: 500;
+    font-size:16px;
 }
 
 .sidebar ul li:last-child {
-    margin-top: 150px;
+    margin-top: 220px;
 }
 
 .sidebar ul li:hover {
     background: #4f46e5;
+}
+
+
+
+.dashboard {
+    flex: 1;
+    padding: 40px;
+}
+
+.dashboard h2 {
+    font-size: 30px;
+    color: #1f2937;
+    margin-bottom: 40px;
+}
+
+
+.cards {
+    display: flex;
+    gap: 20px;
+}
+
+.card1 {
+    flex: 1;
+    height: 140px;
+    background: #6366f1;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.card1 h2 {
+    color: #ffffff;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.card1 p {
+    color: #ffffff;
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.card2 {
+    flex: 1;
+    height: 140px;
+    background: #f59e0b;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.card2 h2 {
+    color: #ffffff;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.card2 p {
+    color: #ffffff;
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.card3 {
+    flex: 1;
+    height: 140px;
+    background: #10b981;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.card3 h2 {
+    color: #ffffff;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.card3 p {
+    color: #ffffff;
+    font-size: 42px;
+    font-weight: 700;
+}
+
+
+.upcoming-events {
+    margin-top: 60px;
+    border: 3px solid #f3f4f6;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.upcoming-events h2 {
+    color: #1f2937;
+    font-size: 23px;
+    margin-bottom: 23px;
+}
+
+.upcoming-events table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.upcoming-events th {
+    color: #1f2937;
+    font-size: 18px;
+    text-align: left;
+    padding: 15px;
+    border-bottom: 3px solid #f3f4f6;
+    text-align: center;
+}
+
+.upcoming-events td {
+    color: #1f2937;
+    font-size: 16px;
+    padding: 18px 15px;
+    border-bottom: 1px solid #f3f4f6;
+    text-align: center;
 }
