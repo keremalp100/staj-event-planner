@@ -130,6 +130,14 @@ button:hover {
     background: #4f46e5;
 }
 
+.sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    color: inherit;
+    text-decoration: none;
+}
 
 
 .dashboard {
