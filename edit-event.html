@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Planner | Etkinliği Düzenle</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <script src="https://kit.fontawesome.com/b07e19239f.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="sidebar">
+
+            <h2>Event Planner</h2>
+
+            <ul>
+
+                <li>
+                    <i class="fa-solid fa-house fa-xl fa-width-auto"></i>Kontrol Paneli
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-list-ul fa-xl fa-width-auto"></i>Etkinlikler
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-calendar fa-xl fa-width-auto"></i>Takvim
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-gear fa-xl fa-width-auto"></i>Ayarlar
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-right-from-bracket fa-xl fa-width-auto"></i>Çıkış Yap
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="add-event">
+
+            <h2>Etkinliği Düzenle</h2>
+
+            <div class="event-form">
+
+                <label>Etkinlik Adı</label>
+                <input type="text" placeholder="Etkinlik adı giriniz">
+
+
+                <label>Açıklama</label>
+                <textarea placeholder="Açıklama giriniz"></textarea>
+
+
+                <div class="event-row">
+
+                    <div>
+                        <label>Tarih</label>
+                        <input type="date">
+                    </div>
+
+                    <div>
+                        <label>Saat</label>
+                        <input type="time">
+                    </div>
+
+                </div>
+
+
+                <label>Konum</label>
+                <input type="text" placeholder="Konum giriniz">
+
+
+                <div class="event-buttons">
+
+                    <button type="button">İPTAL</button>
+
+                    <button type="submit">KAYDET</button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+    <script src="js/events.js"></script>
+</body>
+
+</html>
