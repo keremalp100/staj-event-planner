@@ -61,3 +61,19 @@ if (addEventButton) {
     });
 
 }
+
+function deleteEvent(button) {
+
+    const confirmDelete = confirm(
+        "Bu etkinliği silmek istediğinize emin misiniz?"
+    );
+
+    if (confirmDelete) {
+
+        const row = button.closest("tr");
+
+        row.remove();
+
+    }
+
+}
