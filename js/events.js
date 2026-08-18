@@ -77,3 +77,32 @@ function deleteEvent(button) {
     }
 
 }
+
+
+const searchInput = document.querySelector(
+    '.events-actions input[placeholder="Ara..."]'
+);
+
+if (searchInput) {
+
+    searchInput.addEventListener("input", function () {
+
+        const searchText = searchInput.value.toLowerCase();
+
+        const rows = document.querySelectorAll("tbody tr");
+
+        rows.forEach(function (row) {
+
+            const eventName = row.children[0].textContent.toLowerCase();
+
+            if (eventName.includes(searchText)) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+
+        });
+
+    });
+
+}
