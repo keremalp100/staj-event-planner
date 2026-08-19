@@ -24,31 +24,31 @@
 
                 <li>
                     <a href="dashboard.html">
-                    <i class="fa-solid fa-house fa-xl fa-width-auto"></i>Kontrol Paneli
+                        <i class="fa-solid fa-house fa-xl fa-width-auto"></i>Kontrol Paneli
                     </a>
                 </li>
 
                 <li>
                     <a href="events.html">
-                    <i class="fa-solid fa-list-ul fa-xl fa-width-auto"></i>Etkinlikler
+                        <i class="fa-solid fa-list-ul fa-xl fa-width-auto"></i>Etkinlikler
                     </a>
                 </li>
 
                 <li>
                     <a href="calendar.html">
-                    <i class="fa-solid fa-calendar fa-xl fa-width-auto"></i>Takvim
+                        <i class="fa-solid fa-calendar fa-xl fa-width-auto"></i>Takvim
                     </a>
                 </li>
 
                 <li>
                     <a href="settings.html">
-                    <i class="fa-solid fa-gear fa-xl fa-width-auto"></i>Ayarlar
+                        <i class="fa-solid fa-gear fa-xl fa-width-auto"></i>Ayarlar
                     </a>
                 </li>
 
                 <li>
-                     <a href="index.html">
-                    <i class="fa-solid fa-right-from-bracket fa-xl fa-width-auto"></i>Çıkış Yap
+                    <a href="index.html">
+                        <i class="fa-solid fa-right-from-bracket fa-xl fa-width-auto"></i>Çıkış Yap
                     </a>
                 </li>
 
@@ -66,6 +66,13 @@
                 <div class="events-actions">
 
                     <input type="text" placeholder="Ara...">
+
+                    <select class="statusFilter">
+                        <option value="all">Tümü</option>
+                        <option value="upcoming">Yaklaşan</option>
+                        <option value="completed">Tamamlandı</option>
+                    </select>
+
 
                     <button>
                         <i class="fa-solid fa-plus"></i>
@@ -100,7 +107,8 @@
                         <td>Antalya</td>
                         <td>Tamamlandı</td>
                         <td><i class="fa-solid fa-pen" onclick="window.location.href='edit-event.html'"></i>
-                            <i class="fa-solid fa-trash" onclick="deleteEvent(this)"></i></td>
+                            <i class="fa-solid fa-trash" onclick="deleteEvent(this)"></i>
+                        </td>
                     </tr>
 
                     <tr>
@@ -110,7 +118,8 @@
                         <td>Gaziantep</td>
                         <td>Tamamlandı</td>
                         <td><i class="fa-solid fa-pen" onclick="window.location.href='edit-event.html'"></i>
-                            <i class="fa-solid fa-trash" onclick="deleteEvent(this)"></i></td>
+                            <i class="fa-solid fa-trash" onclick="deleteEvent(this)"></i>
+                        </td>
                     </tr>
 
                     <tr>
@@ -120,7 +129,8 @@
                         <td>Ankara</td>
                         <td>Yaklaşan</td>
                         <td><i class="fa-solid fa-pen" onclick="window.location.href='edit-event.html'"></i>
-                            <i class="fa-solid fa-trash" onclick="deleteEvent(this)"></i></td>
+                            <i class="fa-solid fa-trash" onclick="deleteEvent(this)"></i>
+                        </td>
                     </tr>
 
                     <tr>
@@ -130,7 +140,8 @@
                         <td>İstanbul</td>
                         <td>Yaklaşan</td>
                         <td><i class="fa-solid fa-pen" onclick="window.location.href='edit-event.html'"></i>
-                            <i class="fa-solid fa-trash" onclick="deleteEvent(this)"></i></td>
+                            <i class="fa-solid fa-trash" onclick="deleteEvent(this)"></i>
+                        </td>
                     </tr>
 
                     <tr>
@@ -139,8 +150,9 @@
                         <td>09.00</td>
                         <td>İstanbul</td>
                         <td>Yaklaşan</td>
-                      <td><i class="fa-solid fa-pen" onclick="window.location.href='edit-event.html'"></i>
-                            <i class="fa-solid fa-trash" onclick="deleteEvent(this)"></i></td>
+                        <td><i class="fa-solid fa-pen" onclick="window.location.href='edit-event.html'"></i>
+                            <i class="fa-solid fa-trash" onclick="deleteEvent(this)"></i>
+                        </td>
                     </tr>
 
                     <tr>
@@ -149,8 +161,9 @@
                         <td>15.30</td>
                         <td>İstanbul</td>
                         <td>Yaklaşan</td>
-                       <td><i class="fa-solid fa-pen" onclick="window.location.href='edit-event.html'"></i>
-                            <i class="fa-solid fa-trash" onclick="deleteEvent(this)"></i></td>
+                        <td><i class="fa-solid fa-pen" onclick="window.location.href='edit-event.html'"></i>
+                            <i class="fa-solid fa-trash" onclick="deleteEvent(this)"></i>
+                        </td>
                     </tr>
 
 
@@ -161,7 +174,8 @@
                         <td>Trabzon</td>
                         <td>Yaklaşan</td>
                         <td><i class="fa-solid fa-pen" onclick="window.location.href='edit-event.html'"></i>
-                            <i class="fa-solid fa-trash" onclick="deleteEvent(this)"></i></td>
+                            <i class="fa-solid fa-trash" onclick="deleteEvent(this)"></i>
+                        </td>
                     </tr>
 
 
@@ -172,7 +186,8 @@
                         <td>Bursa</td>
                         <td>Yaklaşan</td>
                         <td><i class="fa-solid fa-pen" onclick="window.location.href='edit-event.html'"></i>
-                            <i class="fa-solid fa-trash" onclick="deleteEvent(this)"></i></td>
+                            <i class="fa-solid fa-trash" onclick="deleteEvent(this)"></i>
+                        </td>
                     </tr>
 
                 </tbody>

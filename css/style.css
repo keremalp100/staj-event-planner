@@ -567,3 +567,14 @@ button:hover {
 .event-buttons button:last-child:hover {
     background: #4f46e5;
 }
+
+
+.statusFilter {
+    height: 40px;
+    padding: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background-color: #ffffff;
+    font-size: 15px;
+    margin-top: 50px 
+}

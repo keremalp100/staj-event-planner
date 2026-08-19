@@ -106,3 +106,34 @@ if (searchInput) {
     });
 
 }
+
+
+const statusFilter = document.querySelector(".statusFilter");
+
+if (statusFilter) {
+
+    statusFilter.addEventListener("change", function () {
+
+        const selectedStatus = statusFilter.value;
+
+        const rows = document.querySelectorAll("tbody tr");
+
+        rows.forEach(function (row) {
+
+            const eventStatus = row.children[4].textContent;
+
+            if (
+                selectedStatus === "all" ||
+                (selectedStatus === "upcoming" && eventStatus === "Yaklaşan") ||
+                (selectedStatus === "completed" && eventStatus === "Tamamlandı")
+            ) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+
+        });
+
+    });
+
+}
