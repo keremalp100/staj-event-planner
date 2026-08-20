@@ -30,13 +30,23 @@ if (eventForm) {
             timeInput.value === "" ||
             locationInput.value === ""
         ) {
-            alert("Lütfen tüm alanları doldurunuz.");
-            return;
+            showToast("Lütfen tüm alanları doldurun!", "warning");
+return;
         }
 
-        alert("Etkinlik başarıyla eklendi.");
+       if (document.querySelector(".edit-page")) {
 
-        window.location.href = "events.html";
+    showToast("Etkinlik güncellendi!", "info");
+
+} else {
+
+    showToast("Etkinlik başarıyla eklendi!", "success");
+
+}
+
+setTimeout(function () {
+    window.location.href = "events.html";
+}, 1500);
 
     });
 
@@ -73,6 +83,7 @@ function deleteEvent(button) {
         const row = button.closest("tr");
 
         row.remove();
+        showToast("Etkinlik silindi!", "error");
 
     }
 
@@ -135,5 +146,21 @@ if (statusFilter) {
         });
 
     });
+
+}
+
+
+
+function showToast(message, type) {
+
+    const toast = document.querySelector(".toast");
+
+    toast.textContent = message;
+
+    toast.className = "toast " + type + " show";
+
+    setTimeout(function () {
+        toast.classList.remove("show");
+    }, 3000);
 
 }
