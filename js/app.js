@@ -150,3 +150,67 @@ nextButton.addEventListener("click", function () {
     }
 
 });
+
+
+function getData() {
+
+    const data = localStorage.getItem("eventPlanner");
+
+    if (data) {
+        return JSON.parse(data);
+    }
+
+    return {
+        events: [],
+        settings: {}
+    };
+
+}
+
+
+function loadCalendarEvents() {
+
+    const data = getData();
+
+    const eventList = document.querySelector(".event-list");
+
+    if (!eventList) {
+        return;
+    }
+
+    data.events.forEach(function (event) {
+
+        const eventElement = document.createElement("div");
+
+        eventElement.className = "calendar-event";
+
+        const dateParts = event.date.split("-");
+
+        eventElement.innerHTML = `
+            <div class="event-date">
+                <strong>${dateParts[2]}</strong>
+                <span>${dateParts[1]}.${dateParts[0]}</span>
+            </div>
+
+            <h3>${event.title}</h3>
+
+            <div class="event-details">
+    <span>
+        <i class="fa-solid fa-clock"></i>
+        ${event.time.replace(":", ".")}
+    </span>
+
+    <span>
+        <i class="fa-solid fa-location-dot"></i>
+        ${event.location}
+    </span>
+</div>
+        `;
+
+        eventList.appendChild(eventElement);
+
+    });
+
+}
+
+loadCalendarEvents();

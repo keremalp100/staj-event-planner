@@ -40,6 +40,24 @@ return;
 
 } else {
 
+
+const data = getData();
+
+const newEvent = {
+    id: Date.now(),
+    title: titleInput.value,
+    description: descriptionInput.value,
+    date: dateInput.value,
+    time: timeInput.value,
+    location: locationInput.value,
+    status: "Yaklaşan"
+};
+
+data.events.push(newEvent);
+
+saveData(data);
+
+
     showToast("Etkinlik başarıyla eklendi!", "success");
 
 }
@@ -82,13 +100,23 @@ function deleteEvent(button) {
 
         const row = button.closest("tr");
 
+        const title = row.children[0].textContent;
+
+        const data = getData();
+
+        data.events = data.events.filter(function (event) {
+            return event.title !== title;
+        });
+
+        saveData(data);
+
         row.remove();
+
         showToast("Etkinlik silindi!", "error");
 
     }
 
 }
-
 
 const searchInput = document.querySelector(
     '.events-actions input[placeholder="Ara..."]'
@@ -162,5 +190,225 @@ function showToast(message, type) {
     setTimeout(function () {
         toast.classList.remove("show");
     }, 3000);
+
+}
+
+
+
+
+function getData() {
+
+    const data = localStorage.getItem("eventPlanner");
+
+    if (data) {
+        return JSON.parse(data);
+    }
+
+    return {
+        events: [],
+        settings: {}
+    };
+
+}
+
+
+function saveData(data) {
+
+    localStorage.setItem(
+        "eventPlanner",
+        JSON.stringify(data)
+    );
+
+}
+
+
+function loadEvents() {
+
+    const data = getData();
+
+    const tbody = document.querySelector("tbody");
+
+    if (!tbody) {
+        return;
+    }
+
+    data.events.forEach(function (event) {
+
+        const row = document.createElement("tr");
+
+        row.dataset.id = event.id;
+
+        row.innerHTML = `
+            <td>${event.title}</td>
+            <td>${event.date.split("-").reverse().join(".")}</td>
+            <td>${event.time.replace(":", ".")}</td>
+            <td>${event.location}</td>
+            <td>${event.status}</td>
+            <td>
+                <i class="fa-solid fa-pen" onclick="editEvent(this)"></i>
+                <i class="fa-solid fa-trash" onclick="deleteEvent(this)"></i>
+            </td>
+        `;
+
+        tbody.appendChild(row);
+
+    });
+
+
+    const rows = Array.from(tbody.querySelectorAll("tr"));
+
+
+    rows.sort(function (a, b) {
+
+        const dateA = a.children[1].textContent
+            .split(".")
+            .reverse()
+            .join("-");
+
+        const dateB = b.children[1].textContent
+            .split(".")
+            .reverse()
+            .join("-");
+
+        const timeA = a.children[2].textContent
+            .replace(".", ":");
+
+        const timeB = b.children[2].textContent
+            .replace(".", ":");
+
+        const dateTimeA = new Date(
+            dateA + "T" + timeA
+        );
+
+        const dateTimeB = new Date(
+            dateB + "T" + timeB
+        );
+
+        return dateTimeA - dateTimeB;
+
+    });
+
+
+    rows.forEach(function (row) {
+
+        tbody.appendChild(row);
+
+    });
+
+}
+
+
+loadEvents();
+
+
+function editEvent(button) {
+
+    const row = button.closest("tr");
+
+    const eventId = row.dataset.id;
+
+    if (!eventId) {
+        return;
+    }
+
+    window.location.href = "edit-event.html?id=" + eventId;
+
+}
+
+
+const editForm = document.querySelector(".edit-page");
+
+if (editForm) {
+
+    const params = new URLSearchParams(window.location.search);
+
+    const eventId = params.get("id");
+
+    const data = getData();
+
+    const event = data.events.find(function (event) {
+        return event.id == eventId;
+    });
+
+    if (event) {
+
+        const titleInput = editForm.querySelector(
+            'input[placeholder="Etkinlik adı giriniz"]'
+        );
+
+        const descriptionInput = editForm.querySelector("textarea");
+
+        const dateInput = editForm.querySelector('input[type="date"]');
+
+        const timeInput = editForm.querySelector('input[type="time"]');
+
+        const locationInput = editForm.querySelector(
+            'input[placeholder="Konum giriniz"]'
+        );
+
+        titleInput.value = event.title;
+        descriptionInput.value = event.description;
+        dateInput.value = event.date;
+        timeInput.value = event.time;
+        locationInput.value = event.location;
+
+    }
+
+
+    const saveButton = editForm.querySelector("button:last-child");
+
+saveButton.addEventListener("click", function () {
+
+    const titleInput = editForm.querySelector(
+        'input[placeholder="Etkinlik adı giriniz"]'
+    );
+
+    const descriptionInput = editForm.querySelector("textarea");
+
+    const dateInput = editForm.querySelector('input[type="date"]');
+
+    const timeInput = editForm.querySelector('input[type="time"]');
+
+    const locationInput = editForm.querySelector(
+        'input[placeholder="Konum giriniz"]'
+    );
+
+
+    if (
+        titleInput.value === "" ||
+        descriptionInput.value === "" ||
+        dateInput.value === "" ||
+        timeInput.value === "" ||
+        locationInput.value === ""
+    ) {
+        showToast("Lütfen tüm alanları doldurun!", "warning");
+        return;
+    }
+
+
+    event.title = titleInput.value;
+    event.description = descriptionInput.value;
+    event.date = dateInput.value;
+    event.time = timeInput.value;
+    event.location = locationInput.value;
+
+
+    const eventIndex = data.events.findIndex(function (item) {
+        return item.id == eventId;
+    });
+
+    data.events[eventIndex] = event;
+
+    saveData(data);
+
+
+    showToast("Etkinlik başarıyla güncellendi!", "success");
+
+
+    setTimeout(function () {
+        window.location.href = "events.html";
+    }, 1500);
+
+});
 
 }

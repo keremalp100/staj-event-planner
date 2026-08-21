@@ -89,7 +89,7 @@ button:hover {
 
 .sidebar {
     width: 210px;
-    height: 100vh;
+    height: auto;
     background: #1f2937;
     padding: 40px 20px;
     display: flex;
