@@ -1,0 +1,499 @@
+@media (min-width: 769px) and (max-width: 1024px) {
+
+    .sidebar {
+        width: 180px;
+        padding: 30px 15px;
+    }
+
+    .sidebar h2 {
+        font-size: 20px;
+        margin-bottom: 60px;
+    }
+
+    .sidebar ul li {
+        font-size: 14px;
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .sidebar ul li:last-child {
+        margin-top: 150px;
+    }
+
+    .dashboard,
+    .events,
+    .calendar,
+    .settings,
+    .add-event {
+        padding: 30px;
+    }
+
+    .cards {
+        gap: 15px;
+    }
+
+    .card1,
+    .card2,
+    .card3 {
+        padding: 20px;
+    }
+
+    .card1 p,
+    .card2 p,
+    .card3 p {
+        font-size: 36px;
+    }
+
+    .card1 h2,
+    .card2 h2,
+    .card3 h2 {
+        font-size: 17px;
+    }
+
+    .upcoming-events {
+        overflow-x: auto;
+    }
+
+    .upcoming-events table {
+        min-width: 650px;
+    }
+
+    .events {
+        overflow-x: hidden;
+    }
+
+    .events table {
+        min-width: 750px;
+    }
+
+    .event-form,
+    .setting-form {
+        width: 90%;
+    }
+
+    .event-row {
+        gap: 30px;
+    }
+
+    .event-buttons {
+        gap: 25px;
+    }
+
+    .calendar .event-list {
+        width: 95%;
+    }
+
+    .calendar-event h3 {
+        width: 180px;
+    }
+
+    .event-details span {
+        width: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .sidebar {
+        width: 100%;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    .sidebar h2 {
+        margin: 0 0 15px;
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .sidebar ul {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        height: auto !important;
+        margin: 0;
+        padding: 0;
+        gap: 5px;
+    }
+
+    .sidebar ul li {
+        display: flex !important;
+        flex: 1;
+        height: 40px;
+        margin: 0 !important;
+        padding: 8px 5px;
+        justify-content: center;
+        align-items: center;
+        font-size: 0 !important;
+        gap: 0;
+        color: #ffffff;
+    }
+
+    .sidebar ul li:last-child {
+        margin-top: 0 !important;
+    }
+
+    .sidebar ul li a {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        font-size: 0 !important;
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    .sidebar ul li i,
+    .sidebar ul li svg {
+        display: block !important;
+        width: 20px !important;
+        height: 20px !important;
+        min-width: 20px !important;
+        min-height: 20px !important;
+        font-size: 20px !important;
+        color: #ffffff !important;
+        fill: currentColor;
+    }
+
+    .container {
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .dashboard,
+    .events,
+    .calendar,
+    .settings,
+    .add-event {
+        width: 100%;
+        padding: 25px 15px;
+        box-sizing: border-box;
+    }
+
+    .dashboard h2 {
+        font-size: 26px;
+        margin-bottom: 25px;
+    }
+
+    .cards {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .card1,
+    .card2,
+    .card3 {
+        width: 100%;
+        height: auto;
+        min-height: 120px;
+        box-sizing: border-box;
+    }
+
+    .upcoming-events {
+        margin-top: 30px;
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    .upcoming-events h2 {
+        font-size: 20px;
+    }
+
+    .upcoming-events table {
+        min-width: 650px;
+    }
+
+    .events {
+        overflow-x: hidden;
+    }
+
+    .events-header {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .events h2 {
+        font-size: 26px;
+    }
+
+    .events-actions {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .events-actions input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .events-actions select {
+        flex: 1;
+        min-width: 120px;
+    }
+
+    .events-actions button {
+        flex: 1;
+        min-width: 140px;
+    }
+
+    .events table {
+        min-width: 800px;
+    }
+
+    .calendar {
+        overflow-x: hidden;
+    }
+
+    .calendar-header {
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .calendar-header h2 {
+        font-size: 21px;
+    }
+
+    .calendar-header button {
+        width: 38px;
+        height: 38px;
+    }
+
+    .event-list {
+        width: 100%;
+    }
+
+    .calendar-event {
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 12px;
+    }
+
+    .event-date {
+        width: 70px;
+        height: 70px;
+        margin-right: 5px;
+        flex-shrink: 0;
+    }
+
+    .event-date strong {
+        font-size: 24px;
+    }
+
+    .event-date span {
+        font-size: 12px;
+    }
+
+    .calendar-event h3 {
+        width: auto;
+        flex: 1;
+        margin: 0;
+        font-size: 17px;
+    }
+
+    .event-details {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .event-details span {
+        width: 100%;
+        text-align: left;
+    }
+
+    .settings h2 {
+        font-size: 26px;
+        margin-bottom: 25px;
+    }
+
+    .setting-form {
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .add-event h2 {
+        font-size: 26px;
+        margin-bottom: 25px;
+    }
+
+    .event-form {
+        width: 100%;
+    }
+
+    .event-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .event-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .event-buttons button {
+        width: 100%;
+    }
+
+    .toast {
+        width: calc(100% - 30px);
+        right: 15px;
+        bottom: 15px;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .sidebar {
+        padding: 15px 10px;
+    }
+
+    .sidebar h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .sidebar ul {
+        gap: 2px;
+    }
+
+    .sidebar ul li {
+        height: 38px;
+        padding: 8px 3px;
+    }
+
+    .sidebar ul li i,
+    .sidebar ul li svg {
+        width: 18px !important;
+        height: 18px !important;
+        min-width: 18px !important;
+        min-height: 18px !important;
+        font-size: 18px !important;
+        color: #ffffff !important;
+    }
+
+    .dashboard,
+    .events,
+    .calendar,
+    .settings,
+    .add-event {
+        padding: 20px 10px;
+    }
+
+    .dashboard h2 {
+        font-size: 23px;
+    }
+
+    .card1,
+    .card2,
+    .card3 {
+        min-height: 105px;
+        padding: 20px;
+    }
+
+    .card1 p,
+    .card2 p,
+    .card3 p {
+        font-size: 34px;
+    }
+
+    .card1 h2,
+    .card2 h2,
+    .card3 h2 {
+        font-size: 17px;
+    }
+
+    .upcoming-events {
+        padding: 10px;
+    }
+
+    .upcoming-events h2 {
+        font-size: 18px;
+    }
+
+    .events h2 {
+        font-size: 23px;
+    }
+
+    .events-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .events-actions input,
+    .events-actions select,
+    .events-actions button {
+        width: 100%;
+        flex: none;
+        box-sizing: border-box;
+    }
+
+    .calendar-header {
+        gap: 10px;
+    }
+
+    .calendar-header h2 {
+        font-size: 18px;
+    }
+
+    .calendar-header button {
+        width: 35px;
+        height: 35px;
+    }
+
+    .calendar-event {
+        padding: 10px;
+    }
+
+    .event-date {
+        width: 60px;
+        height: 60px;
+    }
+
+    .event-date strong {
+        font-size: 21px;
+    }
+
+    .calendar-event h3 {
+        font-size: 15px;
+    }
+
+    .event-details span {
+        font-size: 14px;
+    }
+
+    .setting-form {
+        padding: 15px;
+    }
+
+    .settings h2 {
+        font-size: 23px;
+    }
+
+    .add-event h2 {
+        font-size: 23px;
+    }
+
+    .event-form input,
+    .event-form textarea {
+        font-size: 15px;
+    }
+
+    .event-buttons button {
+        height: 48px;
+        font-size: 14px;
+    }
+
+    .toast {
+        width: calc(100% - 20px);
+        right: 10px;
+        bottom: 10px;
+        padding: 15px;
+        font-size: 14px;
+    }
+}
