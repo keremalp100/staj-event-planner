@@ -6,7 +6,7 @@ if (eventForm) {
         'input[placeholder="Etkinlik adı giriniz"]'
     );
 
-    const descriptionInput = eventForm.querySelector("textarea");
+    
 
     const dateInput = eventForm.querySelector('input[type="date"]');
 
@@ -25,7 +25,7 @@ if (eventForm) {
 
         if (
             titleInput.value === "" ||
-            descriptionInput.value === "" ||
+            
             dateInput.value === "" ||
             timeInput.value === "" ||
             locationInput.value === ""
@@ -46,11 +46,14 @@ const data = getData();
 const newEvent = {
     id: Date.now(),
     title: titleInput.value,
-    description: descriptionInput.value,
+    
     date: dateInput.value,
     time: timeInput.value,
     location: locationInput.value,
-    status: "Yaklaşan"
+    status:
+    new Date(dateInput.value + "T" + timeInput.value) > new Date()
+        ? "Yaklaşan"
+        : "Tamamlandı"
 };
 
 data.events.push(newEvent);
@@ -96,26 +99,55 @@ function deleteEvent(button) {
         "Bu etkinliği silmek istediğinize emin misiniz?"
     );
 
-    if (confirmDelete) {
+    if (!confirmDelete) {
+        return;
+    }
 
-        const row = button.closest("tr");
+    const row = button.closest("tr");
+    const eventId = Number(row.dataset.id);
 
-        const title = row.children[0].textContent;
+    const data = getData();
 
-        const data = getData();
+    const event = data.events.find(function (event) {
+        return event.id === eventId;
+    });
+
+    if (!event) {
+        return;
+    }
+
+    if (event.fixed) {
+
+        let deletedEvents =
+            JSON.parse(
+                sessionStorage.getItem("deletedEvents")
+            ) || [];
+
+        const alreadyDeleted = deletedEvents.some(function (id) {
+            return id === eventId;
+        });
+
+        if (!alreadyDeleted) {
+            deletedEvents.push(eventId);
+        }
+
+        sessionStorage.setItem(
+            "deletedEvents",
+            JSON.stringify(deletedEvents)
+        );
+
+    } else {
 
         data.events = data.events.filter(function (event) {
-            return event.title !== title;
+            return event.id !== eventId;
         });
 
         saveData(data);
-
-        row.remove();
-
-        showToast("Etkinlik silindi!", "error");
-
     }
 
+    row.remove();
+
+    showToast("Etkinlik silindi!", "error");
 }
 
 const searchInput = document.querySelector(
@@ -196,35 +228,17 @@ function showToast(message, type) {
 
 
 
-function getData() {
 
-    const data = localStorage.getItem("eventPlanner");
-
-    if (data) {
-        return JSON.parse(data);
-    }
-
-    return {
-        events: [],
-        settings: {}
-    };
-
-}
-
-
-function saveData(data) {
-
-    localStorage.setItem(
-        "eventPlanner",
-        JSON.stringify(data)
-    );
-
-}
 
 
 function loadEvents() {
 
     const data = getData();
+
+const deletedEvents =
+    JSON.parse(
+        sessionStorage.getItem("deletedEvents")
+    ) || [];
 
     const tbody = document.querySelector("tbody");
 
@@ -232,7 +246,11 @@ function loadEvents() {
         return;
     }
 
-    data.events.forEach(function (event) {
+    data.events
+    .filter(function (event) {
+        return !deletedEvents.includes(event.id);
+    })
+    .forEach(function (event) {
 
         const row = document.createElement("tr");
 
@@ -332,25 +350,22 @@ if (editForm) {
 
     if (event) {
 
-        const titleInput = editForm.querySelector(
-            'input[placeholder="Etkinlik adı giriniz"]'
-        );
+       const titleInput = editForm.querySelector(
+        'input[placeholder="Etkinlik adı giriniz"]'
+    );
 
-        const descriptionInput = editForm.querySelector("textarea");
+    const dateInput = editForm.querySelector('input[type="date"]');
 
-        const dateInput = editForm.querySelector('input[type="date"]');
+    const timeInput = editForm.querySelector('input[type="time"]');
 
-        const timeInput = editForm.querySelector('input[type="time"]');
+    const locationInput = editForm.querySelector(
+        'input[placeholder="Konum giriniz"]'
+    );
 
-        const locationInput = editForm.querySelector(
-            'input[placeholder="Konum giriniz"]'
-        );
-
-        titleInput.value = event.title;
-        descriptionInput.value = event.description;
-        dateInput.value = event.date;
-        timeInput.value = event.time;
-        locationInput.value = event.location;
+    titleInput.value = event.title;
+    dateInput.value = event.date;
+    timeInput.value = event.time;
+    locationInput.value = event.location;
 
     }
 
@@ -363,7 +378,7 @@ saveButton.addEventListener("click", function () {
         'input[placeholder="Etkinlik adı giriniz"]'
     );
 
-    const descriptionInput = editForm.querySelector("textarea");
+   
 
     const dateInput = editForm.querySelector('input[type="date"]');
 
@@ -387,7 +402,7 @@ saveButton.addEventListener("click", function () {
 
 
     event.title = titleInput.value;
-    event.description = descriptionInput.value;
+    
     event.date = dateInput.value;
     event.time = timeInput.value;
     event.location = locationInput.value;

@@ -1,210 +1,108 @@
 const calendarHeader = document.querySelector(".calendar-header");
 
-const previousButton = calendarHeader.querySelector("button:first-child");
-const nextButton = calendarHeader.querySelector("button:last-child");
+let previousButton;
+let nextButton;
+let monthTitle;
+let eventList;
 
-const monthTitle = calendarHeader.querySelector("h2");
+if (calendarHeader) {
 
-const eventList = document.querySelector(".event-list");
+    previousButton = calendarHeader.querySelector("button:first-child");
+    nextButton = calendarHeader.querySelector("button:last-child");
+    monthTitle = calendarHeader.querySelector("h2");
+    eventList = document.querySelector(".event-list");
 
-
-const months = {
-
-    7: {
-        name: "Ağustos 2026",
-        events: [
-            {
-                day: "03",
-                month: "Ağustos",
-                title: "UI/UX Workshop",
-                time: "09.00",
-                location: "Antalya"
-            },
-            {
-                day: "05",
-                month: "Ağustos",
-                title: "Kariyer Günleri",
-                time: "16.00",
-                location: "Gaziantep"
-            },
-        ]
-    },
-
-    8: {
-        name: "Eylül 2026",
-        events: [
-            {
-                day: "02",
-                month: "Eylül",
-                title: "Yazılım Semineri",
-                time: "12.00",
-                location: "Ankara"
-            },
-            {
-                day: "04",
-                month: "Eylül",
-                title: "Fotoğraf Workshop",
-                time: "12.30",
-                location: "İstanbul"
-            },
-            {
-                day: "15",
-                month: "Eylül",
-                title: "Pazarlama Zirvesi",
-                time: "09.00",
-                location: "İstanbul"
-            }
-        ]
-    },
-
-    9: {
-        name: "Ekim 2026",
-        events: [
-            {
-                day: "01",
-                month: "Ekim",
-                title: "UX Kampı",
-                time: "15.30",
-                location: "İstanbul"
-            },
-            {
-                day: "12",
-                month: "Ekim",
-                title: "İnsan Kaynakları Semineri",
-                time: "14.00",
-                location: "Trabzon"
-            },
-            {
-                day: "27",
-                month: "Ekim",
-                title: "Girişimcilik Zirvesi",
-                time: "13.00",
-                location: "Bursa"
-            }
-        ]
-    }
-
-};
+}
 
 
-let currentMonth = 8;
 
 
-function showMonth(month) {
 
-    const monthData = months[month];
+let currentMonth = 7;
 
-    monthTitle.textContent = monthData.name;
 
-    eventList.innerHTML = "";
 
-    monthData.events.forEach(function (event) {
 
-        eventList.innerHTML += `
-            <div class="calendar-event">
 
-                <div class="event-date">
-                    <strong>${event.day}</strong>
-                    <span>${event.month}</span>
-                </div>
+if (calendarHeader) {
 
-                <h3>${event.title}</h3>
+    previousButton.addEventListener("click", function () {
 
-                <div class="event-details">
+        if (currentMonth > 7) {
+            currentMonth--;
+    showMonth(currentMonth);
 
-                    <span>
-                        <i class="fa-solid fa-clock"></i>
-                        ${event.time}
-                    </span>
+        }
 
-                    <span>
-                        <i class="fa-solid fa-location-dot"></i>
-                        ${event.location}
-                    </span>
+    });
 
-                </div>
 
-            </div>
-        `;
+    nextButton.addEventListener("click", function () {
+
+        if (currentMonth < 9) {
+            currentMonth++;
+            showMonth(currentMonth);
+        }
 
     });
 
 }
 
 
-previousButton.addEventListener("click", function () {
-
-    if (currentMonth > 7) {
-        currentMonth--;
-        showMonth(currentMonth);
-    }
-
-});
 
 
-nextButton.addEventListener("click", function () {
 
-    if (currentMonth < 9) {
-        currentMonth++;
-        showMonth(currentMonth);
-    }
+function showMonth(month) {
 
-});
-
-
-function getData() {
-
-    const data = localStorage.getItem("eventPlanner");
-
-    if (data) {
-        return JSON.parse(data);
-    }
-
-    return {
-        events: [],
-        settings: {}
+    const monthNames = {
+        7: "Ağustos ",
+        8: "Eylül ",
+        9: "Ekim "
     };
 
-}
+    monthTitle.textContent = monthNames[month] + " 2026";
 
+    eventList.innerHTML = "";
 
-function loadCalendarEvents() {
+    const events = getCalendarEvents();
 
-    const data = getData();
+    events.forEach(function (event) {
 
-    const eventList = document.querySelector(".event-list");
+        const eventMonth =
+            Number(event.date.split("-")[1]) - 1;
 
-    if (!eventList) {
-        return;
-    }
-
-    data.events.forEach(function (event) {
-
-        const eventElement = document.createElement("div");
-
-        eventElement.className = "calendar-event";
+        if (eventMonth !== month) {
+            return;
+        }
 
         const dateParts = event.date.split("-");
 
-        eventElement.innerHTML = `
-            <div class="event-date">
-                <strong>${dateParts[2]}</strong>
-                <span>${dateParts[1]}.${dateParts[0]}</span>
-            </div>
+        const eventElement =
+            document.createElement("div");
 
-            <h3>${event.title}</h3>
+        eventElement.className = "calendar-event";
+
+        eventElement.innerHTML = `
+           <div class="event-date">
+    <strong>${dateParts[2]}</strong>
+    <span>${monthNames[Number(dateParts[1]) - 1]}</span>
+</div>
+
+<h3>${event.title}</h3>
 
             <div class="event-details">
-    <span>
-        <i class="fa-solid fa-clock"></i>
-        ${event.time.replace(":", ".")}
-    </span>
 
-    <span>
-        <i class="fa-solid fa-location-dot"></i>
-        ${event.location}
-    </span>
-</div>
+                <span>
+                    <i class="fa-solid fa-clock"></i>
+                    ${event.time.replace(":", ".")}
+                </span>
+
+                <span>
+                    <i class="fa-solid fa-location-dot"></i>
+                    ${event.location}
+                </span>
+
+            </div>
         `;
 
         eventList.appendChild(eventElement);
@@ -213,4 +111,243 @@ function loadCalendarEvents() {
 
 }
 
-loadCalendarEvents();
+if (calendarHeader) {
+    showMonth(currentMonth);
+}
+
+
+
+
+
+
+if (document.querySelector(".dashboard")) {
+
+    const counts = getEventCounts();
+    let upcomingEvents = getUpcomingEvents();
+
+const deletedEvent =
+    JSON.parse(sessionStorage.getItem("deletedEvent"));
+
+if (deletedEvent) {
+
+    upcomingEvents = upcomingEvents.filter(function (event) {
+
+        return !(
+            event.title === deletedEvent.title &&
+            event.date === deletedEvent.date &&
+            event.time === deletedEvent.time
+        );
+
+    });
+
+}
+
+upcomingEvents = upcomingEvents.slice(0, 4);
+
+    const totalCard =
+        document.querySelector(".card1 p");
+
+    const upcomingCard =
+        document.querySelector(".card2 p");
+
+    const completedCard =
+        document.querySelector(".card3 p");
+
+
+    totalCard.textContent = counts.total;
+
+    upcomingCard.textContent = counts.upcoming;
+
+    completedCard.textContent = counts.completed;
+
+
+    const calendarHeader = document.querySelector(".calendar-header");
+
+let previousButton;
+let nextButton;
+let monthTitle;
+let eventList;
+
+if (calendarHeader) {
+
+    previousButton = calendarHeader.querySelector("button:first-child");
+    nextButton = calendarHeader.querySelector("button:last-child");
+    monthTitle = calendarHeader.querySelector("h2");
+    eventList = document.querySelector(".event-list");
+
+}
+
+
+
+
+
+let currentMonth = 7;
+
+
+
+
+
+if (calendarHeader) {
+
+    previousButton.addEventListener("click", function () {
+
+        if (currentMonth > 7) {
+            currentMonth--;
+    showMonth(currentMonth);
+
+        }
+
+    });
+
+
+    nextButton.addEventListener("click", function () {
+
+        if (currentMonth < 9) {
+            currentMonth++;
+            showMonth(currentMonth);
+        }
+
+    });
+
+}
+
+
+
+
+
+function showMonth(month) {
+
+    const monthNames = {
+        7: "Ağustos ",
+        8: "Eylül ",
+        9: "Ekim "
+    };
+
+    monthTitle.textContent = monthNames[month] + " 2026";
+
+    eventList.innerHTML = "";
+
+    const events = getCalendarEvents();
+
+    events.forEach(function (event) {
+
+        const eventMonth =
+            Number(event.date.split("-")[1]) - 1;
+
+        if (eventMonth !== month) {
+            return;
+        }
+
+        const dateParts = event.date.split("-");
+
+        const eventElement =
+            document.createElement("div");
+
+        eventElement.className = "calendar-event";
+
+        eventElement.innerHTML = `
+           <div class="event-date">
+    <strong>${dateParts[2]}</strong>
+    <span>${monthNames[Number(dateParts[1]) - 1]}</span>
+</div>
+
+<h3>${event.title}</h3>
+
+            <div class="event-details">
+
+                <span>
+                    <i class="fa-solid fa-clock"></i>
+                    ${event.time.replace(":", ".")}
+                </span>
+
+                <span>
+                    <i class="fa-solid fa-location-dot"></i>
+                    ${event.location}
+                </span>
+
+            </div>
+        `;
+
+        eventList.appendChild(eventElement);
+
+    });
+
+}
+
+if (calendarHeader) {
+    showMonth(currentMonth);
+}
+
+
+
+
+
+
+if (document.querySelector(".dashboard")) {
+
+    const counts = getEventCounts();
+    const upcomingEvents = getUpcomingEvents().slice(0, 4);
+
+    const totalCard =
+        document.querySelector(".card1 p");
+
+    const upcomingCard =
+        document.querySelector(".card2 p");
+
+    const completedCard =
+        document.querySelector(".card3 p");
+
+
+    totalCard.textContent = counts.total;
+
+    upcomingCard.textContent = counts.upcoming;
+
+    completedCard.textContent = counts.completed;
+
+}
+
+
+const tbody = document.querySelector(".upcoming-events tbody");
+
+if (tbody) {
+
+    tbody.innerHTML = "";
+
+    upcomingEvents.forEach(function (event) {
+
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${event.title}</td>
+            <td>${event.date.split("-").reverse().join(".")}</td>
+            <td>${event.time.replace(":", ".")}</td>
+            <td>${event.location}</td>
+        `;
+
+        tbody.appendChild(row);
+
+    });
+
+}
+sessionStorage.removeItem("deletedEvent");
+}
+
+
+const settingsSaveButton = document.querySelector(".setting-form button");
+
+if (settingsSaveButton) {
+    settingsSaveButton.addEventListener("click", function () {
+        showToast("Ayarlar başarıyla kaydedildi!", "success");
+    });
+}
+
+function showToast(message, type) {
+    const toast = document.querySelector(".toast");
+
+    toast.textContent = message;
+    toast.className = "toast " + type + " show";
+
+    setTimeout(function () {
+        toast.classList.remove("show");
+    }, 1500);
+}
