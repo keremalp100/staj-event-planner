@@ -6,8 +6,6 @@ if (eventForm) {
         'input[placeholder="Etkinlik adı giriniz"]'
     );
 
-    
-
     const dateInput = eventForm.querySelector('input[type="date"]');
 
     const timeInput = eventForm.querySelector('input[type="time"]');
@@ -25,49 +23,49 @@ if (eventForm) {
 
         if (
             titleInput.value === "" ||
-            
+
             dateInput.value === "" ||
             timeInput.value === "" ||
             locationInput.value === ""
         ) {
             showToast("Lütfen tüm alanları doldurun!", "warning");
-return;
+            return;
         }
 
-       if (document.querySelector(".edit-page")) {
+        if (document.querySelector(".edit-page")) {
 
-    showToast("Etkinlik güncellendi!", "info");
+            showToast("Etkinlik güncellendi!", "info");
 
-} else {
-
-
-const data = getData();
-
-const newEvent = {
-    id: Date.now(),
-    title: titleInput.value,
-    
-    date: dateInput.value,
-    time: timeInput.value,
-    location: locationInput.value,
-    status:
-    new Date(dateInput.value + "T" + timeInput.value) > new Date()
-        ? "Yaklaşan"
-        : "Tamamlandı"
-};
-
-data.events.push(newEvent);
-
-saveData(data);
+        } else {
 
 
-    showToast("Etkinlik başarıyla eklendi!", "success");
+            const data = getData();
 
-}
+            const newEvent = {
+                id: Date.now(),
+                title: titleInput.value,
 
-setTimeout(function () {
-    window.location.href = "events.html";
-}, 1500);
+                date: dateInput.value,
+                time: timeInput.value,
+                location: locationInput.value,
+                status:
+                    new Date(dateInput.value + "T" + timeInput.value) > new Date()
+                        ? "Yaklaşan"
+                        : "Tamamlandı"
+            };
+
+            data.events.push(newEvent);
+
+            saveData(data);
+
+
+            showToast("Etkinlik başarıyla eklendi!", "success");
+
+        }
+
+        setTimeout(function () {
+            window.location.href = "events.html";
+        }, 1500);
 
     });
 
@@ -209,8 +207,6 @@ if (statusFilter) {
 
 }
 
-
-
 function showToast(message, type) {
 
     const toast = document.querySelector(".toast");
@@ -225,20 +221,14 @@ function showToast(message, type) {
 
 }
 
-
-
-
-
-
-
 function loadEvents() {
 
     const data = getData();
 
-const deletedEvents =
-    JSON.parse(
-        sessionStorage.getItem("deletedEvents")
-    ) || [];
+    const deletedEvents =
+        JSON.parse(
+            sessionStorage.getItem("deletedEvents")
+        ) || [];
 
     const tbody = document.querySelector("tbody");
 
@@ -247,16 +237,16 @@ const deletedEvents =
     }
 
     data.events
-    .filter(function (event) {
-        return !deletedEvents.includes(event.id);
-    })
-    .forEach(function (event) {
+        .filter(function (event) {
+            return !deletedEvents.includes(event.id);
+        })
+        .forEach(function (event) {
 
-        const row = document.createElement("tr");
+            const row = document.createElement("tr");
 
-        row.dataset.id = event.id;
+            row.dataset.id = event.id;
 
-        row.innerHTML = `
+            row.innerHTML = `
             <td>${event.title}</td>
             <td>${event.date.split("-").reverse().join(".")}</td>
             <td>${event.time.replace(":", ".")}</td>
@@ -268,9 +258,9 @@ const deletedEvents =
             </td>
         `;
 
-        tbody.appendChild(row);
+            tbody.appendChild(row);
 
-    });
+        });
 
 
     const rows = Array.from(tbody.querySelectorAll("tr"));
@@ -333,7 +323,6 @@ function editEvent(button) {
 
 }
 
-
 const editForm = document.querySelector(".edit-page");
 
 if (editForm) {
@@ -350,80 +339,77 @@ if (editForm) {
 
     if (event) {
 
-       const titleInput = editForm.querySelector(
-        'input[placeholder="Etkinlik adı giriniz"]'
-    );
+        const titleInput = editForm.querySelector(
+            'input[placeholder="Etkinlik adı giriniz"]'
+        );
 
-    const dateInput = editForm.querySelector('input[type="date"]');
+        const dateInput = editForm.querySelector('input[type="date"]');
 
-    const timeInput = editForm.querySelector('input[type="time"]');
+        const timeInput = editForm.querySelector('input[type="time"]');
 
-    const locationInput = editForm.querySelector(
-        'input[placeholder="Konum giriniz"]'
-    );
+        const locationInput = editForm.querySelector(
+            'input[placeholder="Konum giriniz"]'
+        );
 
-    titleInput.value = event.title;
-    dateInput.value = event.date;
-    timeInput.value = event.time;
-    locationInput.value = event.location;
+        titleInput.value = event.title;
+        dateInput.value = event.date;
+        timeInput.value = event.time;
+        locationInput.value = event.location;
 
     }
 
 
     const saveButton = editForm.querySelector("button:last-child");
 
-saveButton.addEventListener("click", function () {
+    saveButton.addEventListener("click", function () {
 
-    const titleInput = editForm.querySelector(
-        'input[placeholder="Etkinlik adı giriniz"]'
-    );
+        const titleInput = editForm.querySelector(
+            'input[placeholder="Etkinlik adı giriniz"]'
+        );
 
-   
+        const dateInput = editForm.querySelector('input[type="date"]');
 
-    const dateInput = editForm.querySelector('input[type="date"]');
+        const timeInput = editForm.querySelector('input[type="time"]');
 
-    const timeInput = editForm.querySelector('input[type="time"]');
-
-    const locationInput = editForm.querySelector(
-        'input[placeholder="Konum giriniz"]'
-    );
+        const locationInput = editForm.querySelector(
+            'input[placeholder="Konum giriniz"]'
+        );
 
 
-    if (
-        titleInput.value === "" ||
-        descriptionInput.value === "" ||
-        dateInput.value === "" ||
-        timeInput.value === "" ||
-        locationInput.value === ""
-    ) {
-        showToast("Lütfen tüm alanları doldurun!", "warning");
-        return;
-    }
+        if (
+            titleInput.value === "" ||
+            dateInput.value === "" ||
+            timeInput.value === "" ||
+            locationInput.value === ""
+        ) {
+            showToast("Lütfen tüm alanları doldurun!", "warning");
+            return;
+        }
 
 
-    event.title = titleInput.value;
-    
-    event.date = dateInput.value;
-    event.time = timeInput.value;
-    event.location = locationInput.value;
+        event.title = titleInput.value;
+
+        event.date = dateInput.value;
+        event.time = timeInput.value;
+        event.location = locationInput.value;
 
 
-    const eventIndex = data.events.findIndex(function (item) {
-        return item.id == eventId;
+        const eventIndex = data.events.findIndex(function (item) {
+            return item.id == eventId;
+        });
+
+        data.events[eventIndex] = event;
+
+        saveData(data);
+
+
+        showToast("Etkinlik başarıyla güncellendi!", "success");
+
+
+        setTimeout(function () {
+            window.location.href = "events.html";
+        }, 1500);
+
     });
-
-    data.events[eventIndex] = event;
-
-    saveData(data);
-
-
-    showToast("Etkinlik başarıyla güncellendi!", "success");
-
-
-    setTimeout(function () {
-        window.location.href = "events.html";
-    }, 1500);
-
-});
 
 }

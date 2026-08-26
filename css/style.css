@@ -300,7 +300,6 @@ button:hover {
 
 .events-actions input,
 .events-actions button {
-    margin: 0;
     vertical-align: middle;
     margin-top: 50px;
 }
@@ -424,7 +423,6 @@ button:hover {
 }
 
 
-
 .settings {
     flex: 1;
     padding: 40px;
@@ -481,7 +479,6 @@ button:hover {
 }
 
 
-
 .add-event {
     flex: 1;
     padding: 40px;
@@ -505,8 +502,7 @@ button:hover {
     font-size: 17px;
 }
 
-.event-form input,
-.event-form textarea {
+.event-form input {
     width: 100%;
     box-sizing: border-box;
     padding: 15px;
@@ -522,17 +518,12 @@ button:hover {
     height: 50px;
 }
 
-.event-form textarea {
-    height: 80px;
-    padding: 15px;
-}
-
 .event-row {
     display: flex;
     gap: 60px;
 }
 
-.event-row > div {
+.event-row>div {
     flex: 1;
 }
 
@@ -576,7 +567,7 @@ button:hover {
     border-radius: 8px;
     background-color: #ffffff;
     font-size: 15px;
-    margin-top: 50px 
+    margin-top: 50px
 }
 
 

@@ -139,11 +139,11 @@ function getCalendarEvents() {
     const events = data.events.filter(function (event) {
 
         const deletedEvents =
-    JSON.parse(
-        sessionStorage.getItem("deletedEvents")
-    ) || [];
+            JSON.parse(
+                sessionStorage.getItem("deletedEvents")
+            ) || [];
 
-return !deletedEvents.includes(event.id);
+        return !deletedEvents.includes(event.id);
 
     });
 
@@ -163,9 +163,6 @@ return !deletedEvents.includes(event.id);
 
     return events;
 }
-
-
-
 
 function getUpcomingEvents() {
 
