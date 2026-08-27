@@ -6,6 +6,15 @@ Staj sürecinde geliştirilen, kullanıcıların etkinliklerini kolayca planlama
 
 https://keremalp100.github.io/staj-event-planner/
 
+## Giriş
+
+Uygulamaya giriş yapmak için:
+
+- Kullanıcı adı: `admin`
+- Şifre: `1234`
+
+Giriş yaptıktan sonra uygulamanın ana sayfasına yönlendirilirsiniz.
+
 ## Sayfalar
 
 - **Giriş Sayfası (`index.html`)** — Kullanıcının uygulamaya giriş yaptığı sayfa.
