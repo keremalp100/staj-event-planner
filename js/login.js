@@ -7,7 +7,10 @@ loginForm.addEventListener("submit", function (event) {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    if (username === "admin" && password === "1234") {
+    const savedUsername = sessionStorage.getItem("username") || "admin";
+    const savedPassword = sessionStorage.getItem("password") || "1234";
+
+    if (username === savedUsername && password === savedPassword) {
 
         window.location.href = "dashboard.html";
 

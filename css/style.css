@@ -296,6 +296,16 @@ button:hover {
     border-radius: 8px;
     padding: 10px 15px;
     font-size: 15px;
+    width: auto;
+}
+
+.events-actions button:first-of-type {
+    background: #f59e0b;
+    color: #ffffff;
+}
+
+.events-actions button:first-of-type:hover {
+    background-color: #d97706;
 }
 
 .events-actions input,
@@ -618,4 +628,32 @@ button:hover {
     background: #fef2f2;
     border-color: #fca5a5;
     color: #dc2626;
+}
+
+@media print {
+
+    .sidebar,
+    .events-actions,
+    .events-header {
+        display: none;
+    }
+
+    .events {
+        padding: 20px;
+    }
+
+    .events table {
+        border: 1px solid #000000;
+    }
+
+    .events th,
+    .events td {
+        color: #000000;
+        border-bottom: 1px solid #000000;
+    }
+
+    .events th:last-child,
+    .events td:last-child {
+        display: none;
+    }
 }

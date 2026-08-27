@@ -79,16 +79,14 @@ if (eventForm) {
 }
 
 
-const addEventButton = document.querySelector(".events-actions button");
+const addEventButton = document.querySelector(
+    ".events-actions button:last-child"
+);
 
 if (addEventButton) {
-
     addEventButton.addEventListener("click", function () {
-
         window.location.href = "add-event.html";
-
     });
-
 }
 
 function deleteEvent(button) {
@@ -412,4 +410,12 @@ if (editForm) {
 
     });
 
+}
+
+const printEventsButton = document.getElementById("printEventsButton");
+
+if (printEventsButton) {
+    printEventsButton.addEventListener("click", function () {
+        window.print();
+    });
 }

@@ -175,6 +175,15 @@ const settingsSaveButton = document.querySelector(".setting-form button");
 
 if (settingsSaveButton) {
     settingsSaveButton.addEventListener("click", function () {
+
+        const inputs = document.querySelectorAll(".setting-form input");
+
+        const username = inputs[0].value;
+        const password = inputs[1].value;
+
+        sessionStorage.setItem("username", username);
+        sessionStorage.setItem("password", password);
+
         showToast("Ayarlar başarıyla kaydedildi!", "success");
     });
 }

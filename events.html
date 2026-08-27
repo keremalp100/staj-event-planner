@@ -73,6 +73,11 @@
                         <option value="completed">Tamamlandı</option>
                     </select>
 
+                    <button type="button" id="printEventsButton">
+                        <i class="fa-solid fa-print"></i>
+                        Yazdır
+                    </button>
+
 
                     <button>
                         <i class="fa-solid fa-plus"></i>
@@ -82,27 +87,27 @@
                 </div>
 
             </div>
+            <div class="events-table-wrapper">
+                <table>
 
-            <table>
+                    <thead>
 
-                <thead>
+                        <tr>
+                            <th>Etkinlik Adı</th>
+                            <th><i class="fa-solid fa-calendar"></i> Tarih</th>
+                            <th><i class="fa-solid fa-clock"></i> Saat</th>
+                            <th><i class="fa-solid fa-location-dot"></i> Konum</th>
+                            <th>Durum</th>
+                            <th>İşlemler</th>
+                        </tr>
 
-                    <tr>
-                        <th>Etkinlik Adı</th>
-                        <th><i class="fa-solid fa-calendar"></i> Tarih</th>
-                        <th><i class="fa-solid fa-clock"></i> Saat</th>
-                        <th><i class="fa-solid fa-location-dot"></i> Konum</th>
-                        <th>Durum</th>
-                        <th>İşlemler</th>
-                    </tr>
+                    </thead>
 
-                </thead>
+                    <tbody>
+                    </tbody>
 
-                <tbody>
-                </tbody>
-
-            </table>
-
+                </table>
+            </div>
         </div>
     </div>
     <div class="toast"></div>
